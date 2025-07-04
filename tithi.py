@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.options import Options
 
 chromedriver_autoinstaller.install()  # auto-download and setup
 # Path to Chromium on Streamlit Cloud
-CHROME_PATH = "/usr/bin/chromium-browser"
+CHROME_PATH = "/usr/bin/chromium"
 
 
 def get_today_tithi():
