@@ -1,4 +1,6 @@
 # tithi.py
+import tempfile
+import shutil
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -34,8 +36,11 @@ def get_today_tithi():
     #service = Service("chromedriver.exe")
     #driver = webdriver.Chrome(service=service, options=options)
     # for streamlit cloud 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    # Use temporary directory for chromedriver binary
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        chromedriver_path = ChromeDriverManager(path=tmpdirname).install()
+        service = Service(chromedriver_path)
+        driver = webdriver.Chrome(service=service, options=options)
     
 
     try:
