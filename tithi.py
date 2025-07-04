@@ -7,11 +7,11 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 #for streamlit cloud 
 #for streamlit cloud 
-import chromedriver_autoinstaller
-from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
-chromedriver_autoinstaller.install()  # auto-download and setup
+
 # Path to Chromium on Streamlit Cloud
 CHROME_PATH = "/usr/bin/chromium"
 
@@ -34,7 +34,8 @@ def get_today_tithi():
     #service = Service("chromedriver.exe")
     #driver = webdriver.Chrome(service=service, options=options)
     # for streamlit cloud 
-    driver = webdriver.Chrome(options=options)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     
 
     try:
