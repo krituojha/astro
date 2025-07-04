@@ -12,6 +12,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 chromedriver_autoinstaller.install()  # auto-download and setup
+# Path to Chromium on Streamlit Cloud
+CHROME_PATH = "/usr/bin/chromium-browser"
+
 
 def get_today_tithi():
     options = Options()
@@ -20,6 +23,7 @@ def get_today_tithi():
 
     service = Service("chromedriver.exe")
     options = Options()
+    options.binary_location = CHROME_PATH
     options.add_argument("--headless")  # ✅ headless mode = background
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--disable-gpu")
