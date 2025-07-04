@@ -5,6 +5,12 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 import time
+#for streamlit cloud 
+import chromedriver_autoinstaller
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+chromedriver_autoinstaller.install()  # auto-download and setup
 
 def get_daily_horoscope(sign="aries"):
     url = f"https://www.astrosage.com/horoscope/daily-{sign.lower()}-horoscope.asp"
@@ -17,8 +23,9 @@ def get_daily_horoscope(sign="aries"):
     options.add_argument("--window-size=1920,1080")
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
-    service = Service("chromedriver.exe")
-    driver = webdriver.Chrome(service=service, options=options)
+    #service = Service("chromedriver.exe")
+    #driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(options=options)
 
     try:
         driver.get(url)
